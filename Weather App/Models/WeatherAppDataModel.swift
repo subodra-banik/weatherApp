@@ -59,11 +59,13 @@ struct Sys: Codable {
 
 // Mark: - Grouped weather report for 5 days in 3 hrs interval
 struct GroupedWeather: Codable {
+    let cod: String
     let city: City?
     let cnt: Int?
     let weatherArray: [WeatherArray]?
     
     enum CodingKeys: String, CodingKey {
+        case cod
         case city
         case cnt
         case weatherArray = "list"
@@ -79,4 +81,5 @@ struct City: Codable {
 struct WeatherArray: Codable {
     let main: Main?
     let weather: [Weather]?
+    var day: String?
 }

@@ -22,16 +22,10 @@ class WeeklyWeatherCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-    func headerInit(forDay day: String, maxTemp max: String, minTemp min: String) {
+    func customInit(forDay day: String, maxTemp max: String, minTemp min: String) {
         self.dayLabel.text = day
         self.maxTempLabel.text = max
         self.minTempLabel.text = min
-    }
-    
-    func customInit(forDay day: String, maxTemp max: Double, minTemp min: Double) {
-        self.dayLabel.text = day
-        self.maxTempLabel.text = String(max)
-        self.minTempLabel.text = String(min)
     }
 
 }

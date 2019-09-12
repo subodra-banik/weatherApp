@@ -17,7 +17,7 @@ class WeatherAppServices {
      * Method : for getting weather report for a day
      */
     func dayWeatherReport(for city:String, completion: @escaping (WeatherReport?, String?) -> Void) {
-        
+        print("In\(city)")
         // API call using Alamofire
         if let url = URL(string: "https://api.openweathermap.org/data/2.5/weather?q=\(city)&appid=\(self.appID)&units=metric") {
             Alamofire.request(url).responseJSON(completionHandler: { (response) in
@@ -66,8 +66,11 @@ class WeatherAppServices {
                         let weatherReport = try decoder.decode(GroupedWeather.self, from: jsonData)
                         
                         print("My parsed weatherReport: - \(weatherReport)")
-                        
-                        completion(weatherReport, nil)
+                        if weatherReport.cod != "200" {
+                            completion(nil, "Week weather data could not be found!")
+                        } else {
+                            completion(weatherReport, nil)
+                        }
                         
                     } catch {
                         completion(nil, "City not found!")
